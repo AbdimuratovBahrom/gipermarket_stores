@@ -1,0 +1,134 @@
+:root {
+  --accent: #0078ff;
+  --accent-light: #e6f0ff;
+  --bg: #f9fafb;
+  --text: #1e1e1e;
+  --radius: 12px;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 1rem;
+  resize: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+button {
+  flex: 1;
+  min-width: 100px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #005fd1;
+}
+
+.clear-btn {
+  background: #999;
+}
+
+.clear-btn:hover {
+  background: #777;
+}
+
+.result {
+  margin-top: 16px;
+  white-space: pre-wrap;
+  font-family: monospace;
+  background: var(--accent-light);
+  border-radius: var(--radius);
+  padding: 12px;
+  min-height: 80px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.links a {
+  background: var(--accent-light);
+  color: var(--accent);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.links a:hover {
+  background: var(--accent);
+  color: white;
+}
+
+@media (max-width: 500px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+
+  .links a {
+    flex: 1;
+    text-align: center;
+  }
+}
