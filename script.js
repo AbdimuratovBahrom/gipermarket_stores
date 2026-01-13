@@ -151,7 +151,7 @@
    function sortBySHO() {
      const input = document.getElementById("input").value;
      const shops = input
-       .split(/[\n, ,]+/)
+       .split(/[\s,\-–—]+/)
        .map((s) => s.trim().toLowerCase())
        .filter((s) => s !== "");
 
