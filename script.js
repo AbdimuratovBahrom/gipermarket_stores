@@ -206,6 +206,7 @@
      document.getElementById("output").textContent = "";
      lastResult = "";
    }
+// Модалки и слайдер
 function showSlide(modalId, n) {
   const modal = document.getElementById(modalId);
   const slides = modal.querySelectorAll('.slide');
@@ -226,18 +227,29 @@ function changeSlide(modalId, step) {
 function openModal(modalId, startIndex = 0) {
   const modal = document.getElementById(modalId);
   modal.style.display = 'block';
-  modal.dataset.current = '0'; // сбрасываем
+  modal.dataset.current = '0';
   showSlide(modalId, startIndex);
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   modal.style.display = 'none';
-  if (document.fullscreenElement) {
+  if (document.fullscreenElement) document.exitFullscreen();
+}
+
+function toggleFullscreen(img) {
+  if (!document.fullscreenElement) {
+    img.requestFullscreen().catch(err => console.log(err));
+  } else {
     document.exitFullscreen();
   }
 }
 
+window.onclick = function(e) {
+  if (e.target.classList.contains('modal')) {
+    closeModal(e.target.id);
+  }
+};
 function toggleFullscreen(img) {
   if (!document.fullscreenElement) {
     img.requestFullscreen().catch(err => console.log("Fullscreen error:", err));
