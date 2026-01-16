@@ -117,6 +117,49 @@ button:hover {
   background: var(--accent);
   color: white;
 }
+.slide {
+  position: relative;
+  text-align: center;
+}
+
+.slides img {
+  width: 100%;
+  height: auto;
+  display: block;          /* убрали display: none, теперь управляем через .slide */
+  border-radius: 8px;
+}
+
+.caption {
+  color: white;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Скрываем неактивные слайды */
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* Увеличиваем читаемость подписей на мобильных */
+@media (max-width: 600px) {
+  .caption {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
 
 @media (max-width: 500px) {
   h2 {
