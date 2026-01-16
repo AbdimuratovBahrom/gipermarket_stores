@@ -206,32 +206,49 @@
      document.getElementById("output").textContent = "";
      lastResult = "";
    }
-let currentSlide = 0;
-const slideElements = document.querySelectorAll('#floorModal .slide');
-
-function showSlide(n) {
-  slideElements.forEach(slide => slide.classList.remove('active'));
-  currentSlide = (n + slideElements.length) % slideElements.length;
-  slideElements[currentSlide].classList.add('active');
+function showSlide(modalId, n) {
+  const modal = document.getElementById(modalId);
+  const slides = modal.querySelectorAll('.slide');
+  let current = parseInt(modal.dataset.current || '0');
+  
+  slides.forEach(s => s.classList.remove('active'));
+  current = (n + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  modal.dataset.current = current;
 }
 
-function changeSlide(n) {
-  showSlide(currentSlide + n);
+function changeSlide(modalId, step) {
+  const modal = document.getElementById(modalId);
+  let current = parseInt(modal.dataset.current || '0');
+  showSlide(modalId, current + step);
 }
 
-function openModal(startIndex) {
-  document.getElementById('floorModal').style.display = 'block';
-  showSlide(startIndex - 1);  // 1 → Подвал, 2 → 1-этаж, 3 → 2-этаж
+function openModal(modalId, startIndex = 0) {
+  const modal = document.getElementById(modalId);
+  modal.style.display = 'block';
+  modal.dataset.current = '0'; // сбрасываем
+  showSlide(modalId, startIndex);
 }
 
-function closeModal() {
-  document.getElementById('floorModal').style.display = 'none';
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.style.display = 'none';
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+}
+
+function toggleFullscreen(img) {
+  if (!document.fullscreenElement) {
+    img.requestFullscreen().catch(err => console.log("Fullscreen error:", err));
+  } else {
+    document.exitFullscreen();
+  }
 }
 
 // Закрытие по клику на фон
-window.onclick = function(event) {
-  const modal = document.getElementById('floorModal');
-  if (event.target === modal) {
-    closeModal();
+window.onclick = function(e) {
+  if (e.target.classList.contains('modal')) {
+    closeModal(e.target.id);
   }
 }
