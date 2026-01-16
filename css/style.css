@@ -198,6 +198,15 @@ img:-webkit-full-screen {
   border-radius: 0;
   background: #000;
 }
+.prev, .next {
+  display: block !important;
+  opacity: 1 !important;
+  background: rgba(0,0,0,0.7) !important;
+  color: white !important;
+  font-size: 40px !important;
+  width: 80px !important;
+  height: 80px !important;
+}
 
 @media (max-width: 500px) {
   h2 {
