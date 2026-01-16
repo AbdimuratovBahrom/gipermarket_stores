@@ -25,34 +25,55 @@
     <div class="result" id="output"></div>
   
     <div class="links">
-      <!-- Модальное окно со слайдером -->
-<div id="floorModal" class="modal">
-  <span class="close" onclick="closeModal()">×</span>
-  
+      <!-- Модалка для Подвала -->
+<div id="modalBasement" class="modal">
+  <span class="close" onclick="closeModal('modalBasement')">×</span>
   <div class="slider-container">
     <div class="slides">
-      <div class="slide">
-        <img src="css/images/basement.jpg" alt="Подвал">
-        <div class="caption">Подвал</div>
-      </div>
-      
-      <div class="slide">
-        <img src="css/images/floor1.jpg" alt="1 этаж">
-        <div class="caption">1-й этаж</div>
-      </div>
-      
-      <div class="slide">
-        <img src="css/images/floor2.jpg" alt="2 этаж">
-        <div class="caption">2-й этаж</div>
-      </div>
+      <div class="slide"><img src="css/images/basement.jpg"   alt="Подвал" onclick="toggleFullscreen(this)"><div class="caption">Общий план подвала</div></div>
+      <div class="slide"><img src="css/images/шо-1.jpg"       alt="ШО-1"   onclick="toggleFullscreen(this)"><div class="caption">ШО-1</div></div>
+      <div class="slide"><img src="css/images/шо-2.jpg"       alt="ШО-2"   onclick="toggleFullscreen(this)"><div class="caption">ШО-2</div></div>
+      <div class="slide"><img src="css/images/шр-3.jpg"       alt="ШР-3"   onclick="toggleFullscreen(this)"><div class="caption">ШР-3</div></div>
+      <div class="slide"><img src="css/images/шо-4.jpg"       alt="ШО-4"   onclick="toggleFullscreen(this)"><div class="caption">ШО-4</div></div>
+      <div class="slide"><img src="css/images/шо-5.jpg"       alt="ШО-5"   onclick="toggleFullscreen(this)"><div class="caption">ШО-5</div></div>
+      <div class="slide"><img src="css/images/шо-5a.jpg"      alt="ШО-5а"  onclick="toggleFullscreen(this)"><div class="caption">ШО-5а</div></div>
     </div>
-
-    <button class="prev" onclick="changeSlide(-1)">❮</button>
-    <button class="next" onclick="changeSlide(1)">❯</button>
+    <button class="prev" onclick="changeSlide('modalBasement', -1)">❮</button>
+    <button class="next" onclick="changeSlide('modalBasement', 1)">❯</button>
   </div>
 </div>
-      <a href="gipermarket.pdf" download>Скачать PDF</a>
+
+<!-- Модалка для 1 этажа -->
+<div id="modalFloor1" class="modal">
+  <span class="close" onclick="closeModal('modalFloor1')">×</span>
+  <div class="slider-container">
+    <div class="slides">
+      <div class="slide"><img src="css/images/floor1.jpg"     alt="1 этаж" onclick="toggleFullscreen(this)"><div class="caption">Общий план 1 этажа</div></div>
+      <div class="slide"><img src="css/images/шо-1(1).jpg"    alt="ШО-1"   onclick="toggleFullscreen(this)"><div class="caption">ШО-1 (1 этаж)</div></div>
+      <div class="slide"><img src="css/images/шо-2(1).jpg"    alt="ШО-2"   onclick="toggleFullscreen(this)"><div class="caption">ШО-2 (1 этаж)</div></div>
+      <div class="slide"><img src="css/images/шо-3(1).jpg"    alt="ШО-3"   onclick="toggleFullscreen(this)"><div class="caption">ШО-3 (1 этаж)</div></div>
+      <div class="slide"><img src="css/images/шо-4(1).jpg"    alt="ШО-4"   onclick="toggleFullscreen(this)"><div class="caption">ШО-4 (1 этаж)</div></div>
     </div>
+    <button class="prev" onclick="changeSlide('modalFloor1', -1)">❮</button>
+    <button class="next" onclick="changeSlide('modalFloor1', 1)">❯</button>
+  </div>
+</div>
+
+<!-- Модалка для 2 этажа -->
+<div id="modalFloor2" class="modal">
+  <span class="close" onclick="closeModal('modalFloor2')">×</span>
+  <div class="slider-container">
+    <div class="slides">
+      <div class="slide"><img src="css/images/floor2.jpg"     alt="2 этаж" onclick="toggleFullscreen(this)"><div class="caption">Общий план 2 этажа</div></div>
+      <div class="slide"><img src="css/images/шо-1(2).jpg"    alt="ШО-1"   onclick="toggleFullscreen(this)"><div class="caption">ШО-1 (2 этаж)</div></div>
+      <div class="slide"><img src="css/images/шо-2(2).jpg"    alt="ШО-2"   onclick="toggleFullscreen(this)"><div class="caption">ШО-2 (2 этаж)</div></div>
+      <div class="slide"><img src="css/images/шо-3(2).jpg"    alt="ШО-3"   onclick="toggleFullscreen(this)"><div class="caption">ШО-3 (2 этаж)</div></div>
+      <div class="slide"><img src="css/images/шо-4(2).jpg"    alt="ШО-4"   onclick="toggleFullscreen(this)"><div class="caption">ШО-4 (2 этаж)</div></div>
+    </div>
+    <button class="prev" onclick="changeSlide('modalFloor2', -1)">❮</button>
+    <button class="next" onclick="changeSlide('modalFloor2', 1)">❯</button>
+  </div>
+</div>
   </div>
 
 </body>
