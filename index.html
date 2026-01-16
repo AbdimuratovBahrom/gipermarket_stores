@@ -25,10 +25,32 @@
     <div class="result" id="output"></div>
   
     <div class="links">
-      <a href="css/images/basement.jpg" target="_blank">🔹 Подвал</a>
-      <a href="css/images/floor1.jpg" target="_blank">🔹 1-этаж</a>
-      <a href="css/images/floor2.jpg" target="_blank">🔹 2-этаж</a>
+      <!-- Модальное окно со слайдером -->
+<div id="floorModal" class="modal">
+  <span class="close" onclick="closeModal()">×</span>
+  
+  <div class="slider-container">
+    <div class="slides">
+      <div class="slide">
+        <img src="css/images/basement.jpg" alt="Подвал">
+        <div class="caption">Подвал</div>
+      </div>
       
+      <div class="slide">
+        <img src="css/images/floor1.jpg" alt="1 этаж">
+        <div class="caption">1-й этаж</div>
+      </div>
+      
+      <div class="slide">
+        <img src="css/images/floor2.jpg" alt="2 этаж">
+        <div class="caption">2-й этаж</div>
+      </div>
+    </div>
+
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <button class="next" onclick="changeSlide(1)">❯</button>
+  </div>
+</div>
       <a href="gipermarket.pdf" download>Скачать PDF</a>
     </div>
   </div>
