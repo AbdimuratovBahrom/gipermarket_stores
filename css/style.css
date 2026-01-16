@@ -117,48 +117,86 @@ button:hover {
   background: var(--accent);
   color: white;
 }
-.slide {
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  overflow: auto;
+}
+
+.slider-container {
   position: relative;
+  width: 94%;
+  max-width: 1350px;
+  margin: 40px auto;
+}
+
+.slides .slide {
+  display: none;
   text-align: center;
 }
 
-.slides img {
-  width: 100%;
-  height: auto;
-  display: block;          /* убрали display: none, теперь управляем через .slide */
-  border-radius: 8px;
-}
-
-.caption {
-  color: white;
-  background: rgba(0, 0, 0, 0.65);
-  padding: 12px 20px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-/* Скрываем неактивные слайды */
-.slide {
-  display: none;
-}
-
-.slide.active {
+.slides .slide.active {
   display: block;
 }
 
-/* Увеличиваем читаемость подписей на мобильных */
-@media (max-width: 600px) {
-  .caption {
-    font-size: 1rem;
-    padding: 10px 15px;
-  }
+.slides img {
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 8px;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.caption {
+  color: #fff;
+  background: rgba(0,0,0,0.65);
+  padding: 10px 18px;
+  font-size: 1.1rem;
+  margin-top: 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 32px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 36px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+img:fullscreen,
+img:-webkit-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain;
+  border-radius: 0;
+  background: #000;
 }
 
 @media (max-width: 500px) {
