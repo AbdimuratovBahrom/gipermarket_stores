@@ -206,3 +206,32 @@
      document.getElementById("output").textContent = "";
      lastResult = "";
    }
+let currentSlide = 0;
+const slideElements = document.querySelectorAll('#floorModal .slide');
+
+function showSlide(n) {
+  slideElements.forEach(slide => slide.classList.remove('active'));
+  currentSlide = (n + slideElements.length) % slideElements.length;
+  slideElements[currentSlide].classList.add('active');
+}
+
+function changeSlide(n) {
+  showSlide(currentSlide + n);
+}
+
+function openModal(startIndex) {
+  document.getElementById('floorModal').style.display = 'block';
+  showSlide(startIndex - 1);  // 1 → Подвал, 2 → 1-этаж, 3 → 2-этаж
+}
+
+function closeModal() {
+  document.getElementById('floorModal').style.display = 'none';
+}
+
+// Закрытие по клику на фон
+window.onclick = function(event) {
+  const modal = document.getElementById('floorModal');
+  if (event.target === modal) {
+    closeModal();
+  }
+}
