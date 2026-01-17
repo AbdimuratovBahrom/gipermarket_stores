@@ -25,6 +25,14 @@
     <div class="result" id="output"></div>
   
     <div class="links">
+       <a href="#" onclick="openModal('modalBasement', 0); return false;">🔹 Подвал</a>
+      <a href="#" onclick="openModal('modalFloor1', 0); return false;">🔹 1-этаж</a>
+      <a href="#" onclick="openModal('modalFloor2', 0); return false;">🔹 2-этаж</a>
+      
+      <a href="gipermarket.pdf" download>Скачать PDF</a>
+    </div>
+
+    </div>
       <!-- Модалка для Подвала -->
 <div id="modalBasement" class="modal">
   <span class="close" onclick="closeModal('modalBasement')">×</span>
@@ -41,7 +49,7 @@
     <button class="prev" onclick="changeSlide('modalBasement', -1)">❮</button>
     <button class="next" onclick="changeSlide('modalBasement', 1)">❯</button>
   </div>
-</div>
+
 
 <!-- Модалка для 1 этажа -->
 <div id="modalFloor1" class="modal">
