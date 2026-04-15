@@ -1,0 +1,6 @@
+git add .
+
+git commit -m "подвал"
+
+
+git push origin main
