@@ -216,8 +216,12 @@ function translateSHO(sho) {
 
 /* Перестроить результат на текущем языке из сохранённых данных */
 function buildTranslatedResult() {
-  if (!lastResult) return "";
   const t = T[lang];
+  // Если нет данных по ШО, но есть ненайденные — показываем только их
+  if (!lastResult && lastNotFound.length) {
+    return `${t.notFound}\n${lastNotFound.join(", ")}`;
+  }
+  if (!lastResult) return "";
   let out = lastResult
     .split("\n")
     .filter(l => !l.startsWith("⚠️") && l.trim() !== "")
@@ -231,7 +235,6 @@ function buildTranslatedResult() {
   }
   return out;
 }
-
 /* ========== ОСНОВНЫЕ ФУНКЦИИ ========== */
 function sortBySHO() {
   const t = T[lang];
@@ -266,7 +269,9 @@ function sortBySHO() {
   /* Сохраняем в нейтральном (русском) формате для пересчёта при смене языка */
   lastResult = sortedKeys.map(sho => `${sho}: ${shoMap[sho].join(", ")}`).join("\n");
 
-  const display = buildTranslatedResult() || t.noData;
+  const display = (sortedKeys.length === 0 && lastNotFound.length > 0)
+  ? `${t.notFound}\n${lastNotFound.join(", ")}`
+  : buildTranslatedResult() || t.noData;
   document.getElementById("output").textContent = display;
 }
 
