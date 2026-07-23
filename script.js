@@ -1,84 +1,22 @@
-/* ========== ПЕРЕВОДЫ ========== */
-const T = {
-  ru: {
-    title:       "Сортировка магазинов по ШО и этажу 🏬",
-    placeholder: "Введите номера магазинов через запятую, точку, тире, пробел или с новой строки...",
-    btnSort:     "Отсортировать",
-    btnCopy:     "Скопировать",
-    btnClear:    "Очистить",
-    lnkBasement: "🔹 Подвал",
-    lnkFloor1:   "🔹 1-этаж",
-    lnkFloor2:   "🔹 2-этаж",
-    lnkPdf:      "Скачать PDF",
-    capBasement: "Общий план подвала",
-    capFloor1:   "Общий план 1 этажа",
-    capFloor2:   "Общий план 2 этажа",
-    noInput:     "Введите номера магазинов",
-    notFound:    "⚠️ Эти магазины не отключаются отдельно:",
-    copied:      "Скопировано в буфер обмена!",
-    noCopy:      "Нечего копировать",
-    copyFail:    "Не удалось скопировать",
-    noData:      "Нет данных для отображения",
-    basement:    "подвал",
-    floor1:      "1-этаж",
-    floor2:      "2-этаж"
-  },
-  uz_cyr: {
-    title:       "Дўконларни ШО ва қаватга кўра саралаш 🏬",
-    placeholder: "Дўкон рақамларини вергул, нуқта, тире, бўш жой ёки янги қаторда киритинг...",
-    btnSort:     "Саралаш",
-    btnCopy:     "Нусха олиш",
-    btnClear:    "Тозалаш",
-    lnkBasement: "🔹 Подвал",
-    lnkFloor1:   "🔹 1-қават",
-    lnkFloor2:   "🔹 2-қават",
-    lnkPdf:      "PDF юклаш",
-    capBasement: "Подвалнинг умумий режаси",
-    capFloor1:   "1-қаватнинг умумий режаси",
-    capFloor2:   "2-қаватнинг умумий режаси",
-    noInput:     "Дўкон рақамларини киритинг",
-    notFound:    "⚠️ Бу дўконлар алоҳида ўчирилмайди:",
-    copied:      "Буфер хотирасига нусха олинди!",
-    noCopy:      "Нусха олинадиган нарса йўқ",
-    copyFail:    "Нусха олиб бўлмади",
-    noData:      "Кўрсатиш учун маълумот йўқ",
-    basement:    "подвал",
-    floor1:      "1-қават",
-    floor2:      "2-қават"
-  },
-  uz_lat: {
-    title:       "Do'konlarni SHO va qavatga ko'ra saralash 🏬",
-    placeholder: "Do'kon raqamlarini vergul, nuqta, tire, bo'sh joy yoki yangi qatorda kiriting...",
-    btnSort:     "Saralash",
-    btnCopy:     "Nusxa olish",
-    btnClear:    "Tozalash",
-    lnkBasement: "🔹 Podval",
-    lnkFloor1:   "🔹 1-qavat",
-    lnkFloor2:   "🔹 2-qavat",
-    lnkPdf:      "PDF yuklash",
-    capBasement: "Podvalning umumiy rejasi",
-    capFloor1:   "1-qavatning umumiy rejasi",
-    capFloor2:   "2-qavatning umumiy rejasi",
-    noInput:     "Do'kon raqamlarini kiriting",
-    notFound:    "⚠️ Bu do'konlar alohida o'chirilmaydi:",
-    copied:      "Bufer xotirasiga nusxa olindi!",
-    noCopy:      "Nusxa olinadigan narsa yo'q",
-    copyFail:    "Nusxa olib bo'lmadi",
-    noData:      "Ko'rsatish uchun ma'lumot yo'q",
-    basement:    "podval",
-    floor1:      "1-qavat",
-    floor2:      "2-qavat"
-  }
-};
-
-let lang = "ru";
+let lang = localStorage.getItem("giper_lang") || "ru";
 
 function setLang(l) {
   lang = l;
-  document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
-  const idx = { ru: 0, uz_cyr: 1, uz_lat: 2 }[l];
-  document.querySelectorAll(".lang-btn")[idx].classList.add("active");
+  localStorage.setItem("giper_lang", l);
+  document.querySelectorAll(".ds-lang-btn").forEach(b => b.classList.toggle("active", b.dataset.lang === l));
   applyTranslations();
+}
+
+/* ── Тема (авто по ОС + переключатель, персист в localStorage) ─────────── */
+function applyTheme(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (theme === 'dark' || theme === 'light') {
+    document.documentElement.setAttribute('data-theme', theme);
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  const isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (btn) btn.textContent = isDark ? '☀️' : '🌙';
 }
 
 function applyTranslations() {
@@ -338,4 +276,18 @@ window.onclick = function (e) {
 };
 
 /* ========== ИНИЦИАЛИЗАЦИЯ ========== */
-document.addEventListener("DOMContentLoaded", () => applyTranslations());
+document.addEventListener("DOMContentLoaded", () => {
+  setLang(lang);
+
+  applyTheme(localStorage.getItem('giper_theme'));
+  const themeBtn = document.getElementById('themeToggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+        || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const next = isDark ? 'light' : 'dark';
+      localStorage.setItem('giper_theme', next);
+      applyTheme(next);
+    });
+  }
+});

@@ -3,41 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e40af"/>
   <title>Сортировка магазинов гипермаркета по ШО и этажу</title>
   <link rel="shortcut icon" href="css/images/giper.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="translations.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
 <body>
 
-  <h2 id="app-title">Сортировка магазинов по ШО и этажу 🏬</h2>
-
-  <!-- Переключатель языков -->
-  <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('ru')">Русский</button>
-    <button class="lang-btn" onclick="setLang('uz_cyr')">Ўзбекча</button>
-    <button class="lang-btn" onclick="setLang('uz_lat')">O'zbekcha</button>
-  </div>
-
-  <div class="container">
-    <textarea id="input" placeholder=""></textarea>
-
-    <div class="buttons">
-      <button id="btn-sort" onclick="sortBySHO()">Отсортировать</button>
-      <button id="btn-copy" onclick="copyResult()">Скопировать</button>
-      <button class="clear-btn" id="btn-clear" onclick="clearInput()">Очистить</button>
+  <header class="ds-header">
+    <span class="ds-header-title" id="headerTitle">🏬 Гипермаркет</span>
+    <div class="ds-header-controls">
+      <div class="ds-lang-group" role="group" aria-label="Til / Язык">
+        <button type="button" class="ds-lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
+        <button type="button" class="ds-lang-btn" data-lang="uz_latn" onclick="setLang('uz_latn')">O'z</button>
+        <button type="button" class="ds-lang-btn" data-lang="uz_cyrl" onclick="setLang('uz_cyrl')">Ўз</button>
+      </div>
+      <button type="button" class="ds-theme-btn" id="themeToggle" aria-label="Переключить тему">🌙</button>
     </div>
+  </header>
 
-    <div class="result" id="output"></div>
+  <main class="ds-page">
+    <h2 id="app-title" class="ds-intro">Сортировка магазинов по ШО и этажу 🏬</h2>
+
+    <section class="ds-card">
+      <textarea id="input" class="ds-textarea" placeholder=""></textarea>
+
+      <div class="buttons">
+        <button id="btn-sort" class="ds-btn ds-btn-primary" onclick="sortBySHO()">Отсортировать</button>
+        <button id="btn-copy" class="ds-btn" onclick="copyResult()">Скопировать</button>
+        <button class="clear-btn ds-btn" id="btn-clear" onclick="clearInput()">Очистить</button>
+      </div>
+
+      <div class="result" id="output"></div>
+    </section>
 
     <div class="links">
-      <a href="#" id="lnk-basement" onclick="openModal('modalBasement', 0); return false;">🔹 Подвал</a>
-      <a href="#" id="lnk-floor1"   onclick="openModal('modalFloor1', 0); return false;">🔹 1-этаж</a>
-      <a href="#" id="lnk-floor2"   onclick="openModal('modalFloor2', 0); return false;">🔹 2-этаж</a>
-      <a href="/css/images/gipermarket.pdf" download id="lnk-pdf">Скачать PDF</a>
+      <a href="#" id="lnk-basement" class="ds-btn" onclick="openModal('modalBasement', 0); return false;">🔹 Подвал</a>
+      <a href="#" id="lnk-floor1"   class="ds-btn" onclick="openModal('modalFloor1', 0); return false;">🔹 1-этаж</a>
+      <a href="#" id="lnk-floor2"   class="ds-btn" onclick="openModal('modalFloor2', 0); return false;">🔹 2-этаж</a>
+      <a href="/css/images/gipermarket.pdf" download id="lnk-pdf" class="ds-btn ds-btn-accent">Скачать PDF</a>
     </div>
-  </div>
+  </main>
 
   <!-- Модалка Подвал -->
   <div id="modalBasement" class="modal">
